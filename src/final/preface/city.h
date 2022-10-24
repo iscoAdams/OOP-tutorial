@@ -106,6 +106,14 @@ void connectRoadsToPlaces(City& city) {
         }
     }
 }
+City createCity() { //constructor for the city
+    City city;
+    addRoads(city);
+    addPlaces(city);
+    connectRoadsToPlaces(city);
+    return city;
+}
+
 void printCity(City city) {
     for (auto& place : city.places) {
         std::cout << place.name << " is connected to ";
@@ -117,15 +125,8 @@ void printCity(City city) {
         std::cout << std::endl;
     }
 }
-City createCity() { //constructor for the city
-    City city;
-    addRoads(city);
-    addPlaces(city);
-    connectRoadsToPlaces(city);
-    return city;
-}
 // ..............................
-/* unordered_map<std::string, int>places;
+unordered_map<std::string, int>places;
 void indexing() {
     int k = 0;
     for (auto& road : roads) {
@@ -135,31 +136,29 @@ void indexing() {
         if (!places.count(to)) places[to] = k++;
     }
 }
-vector<vector<int>>roads2;
-void createCity2() {
+vector<int>graph[10]; //adjacency list
+void addRoads() {
     indexing();
-    roads2 = vector<vector<int>>(places.size(), vector<int>(places.size(), 0));
     for (auto& road : roads) {
         std::string from = road.substr(0, road.find('-'));
         std::string to = road.substr(road.find('-') + 1, road.size());
-        roads2[places[from]].push_back(places[to]);
-        roads2[places[to]].push_back(places[from]);
+        graph[places[from]].push_back(places[to]);
+        graph[places[to]].push_back(places[from]);
     }
 }
 void printCity2() {
-    createCity2();
+    addRoads();
     for (auto& place : places) {
         std::cout << place.first << " is connected to ";
         int cnt{};
-        for (auto& road : roads2[place.second]) {
-            for (auto& place2 : places) {
-                if (place2.second == road) {
-                    std::cout << place2.first;
-                    break;
+        for (auto& road : graph[place.second]) {
+            for (auto& p : places) {
+                if (p.second == road) {
+                    std::cout << p.first;
+                    if (cnt++ < graph[place.second].size() - 1)  std::cout << " and ";
                 }
             }
-            if (cnt++ < roads2[place.second].size() - 1) std::cout << " and ";
         }
         std::cout << std::endl;
     }
-} */
+}

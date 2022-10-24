@@ -16,6 +16,8 @@ add_executable(
                 src/final/preface/airplane.h
                 src/final/preface/box.h
                 src/final/preface/city.h
+                src/final/preface/game.h
+                src/final/preface/girlFriend.h
                 src/final/preface/mall.h
                 src/final/preface/matrix.h
                 src/final/preface/rabbit.h

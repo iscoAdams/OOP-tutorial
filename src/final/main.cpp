@@ -10,6 +10,8 @@
 #include "preface/airplane.h"
 #include "preface/box.h"
 #include "preface/city.h"
+#include "preface/game.h"
+#include "preface/girlFriend.h"
 #include "preface/mall.h"
 #include "preface/matrix.h"
 // #include "preface/product.h" //there are two product classes (take care)
@@ -27,9 +29,36 @@
 //         result.push_back(to_string(a[i]));
 //     return result;
 // }
+
+// int sumOfRange(int i) {
+//      //let's consider that there is no (N*N+1)/2 low to make it get clearer
+//      //even though i tried to write that formula, there will be no abstraction but if it is in 
+//      //the form of a function that do what is wanted from it, it will be more abstract 
+//      //and not all cases will be the abstracted slower than the non-abstracted one
+//     if (!i) return 0;
+//     return i + sumOfRange(i - 1);
+// }
 int main() {
     IO();
     out("here we go! \n");
+
+
+
+    //abstraction 
+    //  i don't consider it as a concept, but as a tool
+    // it can be sued or seen any where of my program 
+    //that's a less abstracted style but faster (it's iterative ) and iterative is faster than recursive
+    // int sum{ 0 }, range{ 10 };
+    // while (range) {sum += range--;}
+    // cout << sum << endl;
+
+    //more abstracted style but it's slower
+    // cout << sumOfRange(10) << endl;
+
+
+    // printCity(createCity());
+    // cout <<"-----------------------"<<endl;
+    // printCity2(); //less abstracted style but still abstracted
 
 
     //if u don't remember the order of values, just hover on the constructor here
@@ -70,8 +99,6 @@ int main() {
         // but don't care about it, it's not the point here
     // cout << "Hello, World!" << endl;
 
-        // City city = createCity();
-    // printCity(city);
 
 
         // Box box = Box();
@@ -183,6 +210,14 @@ int main() {
         // for (int i{ 0 }; i < 2; i++)
     //     cout << a[i].first << " " << a[i].second << endl;
 
+    // vector <int> a = { 1,2,3,4,5 };
+    // for (int i{ 0 }; i < a.size(); i++)//without iterator
+    //     cout << a[i] << " ";
+    // for (auto i : a)//short hand (for of loop) with iterator [here i'm creating a copy of it to iterate over it not a referance]
+    //     cout << i << " ";
+    // for (auto it = a.begin(); it != a.end(); it++) //iterator
+    //     cout << *it << " ";
+
     // out("Hello, World!", 2, 3);
 
         // enum Color {
@@ -191,6 +226,9 @@ int main() {
         //     BLUE
         // };
     // Color color = BLUE;
+    // i give it to the compiler insstead of any logical mess of type (typo)
+    // i acn define available ranges or allowed values only to be passed and they are somehow constants 
+    // so that's way they all are capital letters
 
     // ShoppingCart cart;
     // cart.addProduct(new Cheese (FRESH,200, 0.5));
@@ -198,4 +236,29 @@ int main() {
     // cart.addProduct(new Fruit (APPLE,100, 2));
     // cart.addProduct(new Fruit (BANANA,100, 2));
     // cout << Kashier::askKashier()->checkout(cart) << endl;
+
+
+
+    //composition (PART-OF) (one way) relationship 
+    // if there no game there is no player
+    // player can't exist without a game 
+    // another ex: room can't exist without a house 
+    // Game currentGame;
+    // currentGame.addPlayer(new Player("natasha", 0));
+    // currentGame.addPlayer(new Player("string", 0));
+    // Player* winnerPlayer = currentGame.getPlayer("natasha");
+    // winnerPlayer->setScore(10); //the winner take 10 points
+    // i can't add points without winning a game 
+    // or in other words without a game :)
+    // cout << winnerPlayer->getScore();
+
+
+    //aggregation is (HAS-A) one way relationship
+    // a wallet has money, yet the money can exist without the wallet
+    // employee has an address, yet the address can exist without the employee (address of my company won't change by my death or leaving the company)
+    // a boy-friend has a girl-friend yet the girlfriend can exist without her boy-friend (not a big deal)
+    // BoyFriend boyFriend = BoyFriend("Ahmed", 20);
+    // GirlFriend* girlFriend = new GirlFriend("Sara", 19, &boyFriend);
+    // girlFriend->showSomeLove();
+    // girlFriend->walk();
 }

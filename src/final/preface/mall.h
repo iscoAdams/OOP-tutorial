@@ -35,7 +35,7 @@ public:
 class Fruit : public Product {
     FruitType type;
 public:
-    Fruit(FruitType type,float pricePerKg, float weight) {
+    Fruit(FruitType type, float pricePerKg, float weight) {
         this->type = type;
         this->pricePerKg = pricePerKg;
         this->weight = weight;
